@@ -6,7 +6,7 @@ gemspec
 
 # build-time dependencies
 gem 'bundler-audit'
-gem 'combustion', '~> 0.5'
+gem 'combustion', '~> 1.0'
 gem 'irb', require: false
 gem 'rake', '>= 12.0'
 gem 'rspec', '~> 3.4'
