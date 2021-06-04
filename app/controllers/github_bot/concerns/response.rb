@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module GithubBot
+  # Public: A helper to the controllers for assisting in providing json responses
   module Response
     # Public: Renders a json response
     def json_response(object, status = :ok)

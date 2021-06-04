@@ -26,7 +26,7 @@ module GithubBot
         #
         # @raise [StandardError] Raises error if instance has not been initialized before usage
         def instance
-          raise 'client not initialize' unless @instance
+          raise StandardError, 'client not initialize' unless @instance
 
           @instance
         end
@@ -49,7 +49,7 @@ module GithubBot
       rescue Octokit::Forbidden => e
         if e.errors.any? && e.errors.first[:code] == 'too_large'
           # revert to using the raw_url for getting the content
-          return URI.open(file.raw_url).read
+          return URI.parse(file.raw_url).open.read
         end
 
         raise e
@@ -168,7 +168,7 @@ module GithubBot
           elsif ENV['GITHUB_APP_PEM']
             ENV['GITHUB_APP_PEM'].gsub('\n', "\n")
           else
-            raise "'GITHUB_APP_PEM_PATH' or 'GITHUB_APP_PEM' needs to be set"
+            raise StandardError, "'GITHUB_APP_PEM_PATH' or 'GITHUB_APP_PEM' needs to be set"
           end
 
         private_key = OpenSSL::PKey::RSA.new(private_pem)

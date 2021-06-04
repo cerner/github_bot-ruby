@@ -32,7 +32,7 @@ module GithubBot
 
       # Public: Moves the check run into the in progress status
       def in_progress(**opts)
-        raise 'check run has not been established' unless @check
+        raise StandardError, 'check run has not been established' unless @check
 
         defaults = {
           output: {

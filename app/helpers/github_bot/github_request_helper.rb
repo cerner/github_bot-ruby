@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module GithubBot
+  # Public: A request helper for understanding the incoming request context
   module GithubRequestHelper
     # Public: Returns the GitHub event type of the incoming request
     def github_event
@@ -24,7 +25,7 @@ module GithubBot
       begin
         @github_payload = JSON.parse(github_payload_raw).with_indifferent_access
       rescue StandardError => e
-        raise "Invalid JSON (#{e}): #{@github_payload_raw}"
+        raise StandardError, "Invalid JSON (#{e}): #{@github_payload_raw}"
       end
     end
 

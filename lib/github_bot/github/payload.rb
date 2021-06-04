@@ -141,7 +141,7 @@ module GithubBot
 
         @repository_fork_urls =
           [].tap do |ar|
-            json = URI.open(repository[:forks_url]).read
+            json = URI.parse(repository[:forks_url]).open.read
             JSON.parse(json).sort_by { |i| Date.parse i['updated_at'] }.reverse_each do |fork|
               ar << fork['clone_url']
             end
@@ -164,7 +164,7 @@ module GithubBot
         file = raw_file_url('.github-bots')
         @repository_pull_request_bots = [].tap do |ar|
           if file
-            resp = YAML.safe_load(URI.open(file).read)
+            resp = YAML.safe_load(URI.parse(file).open.read)
             ar << resp['pull_request'] if resp['pull_request']
           end
         end.flatten
@@ -191,7 +191,7 @@ module GithubBot
         content_file = File.join(repository_contents_url, "#{path}?ref=#{head_sha}")
         JSON.parse(URI.parse(content_file).open(&:read))['download_url']
       rescue ::OpenURI::HTTPError => e
-        raise "file '#{content_file}' not found" unless /404 Not Found/i.match?(e.message)
+        raise StandardError, "file '#{content_file}' not found" unless /404 Not Found/i.match?(e.message)
       end
 
       def repository_contents_url

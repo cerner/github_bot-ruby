@@ -4,6 +4,7 @@ require 'json'
 require_relative 'concerns/response'
 
 module GithubBot
+  # Public: Base controller for handing rails routes into the GithubBot
   class ApplicationController < ActionController::API
     include Response
     include GithubRequestHelper

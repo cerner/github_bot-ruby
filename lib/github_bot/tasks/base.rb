@@ -2,6 +2,7 @@
 
 module GithubBot
   module Tasks
+    # Public: Base class for establishing tasks to be executed via a validator
     class Base
       # Public: Returns the validator associated to the task execution
       attr_reader :validator
