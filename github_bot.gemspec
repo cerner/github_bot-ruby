@@ -28,4 +28,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.required_ruby_version = '>= 2.6.2'
+
+  spec.add_dependency 'git', '~> 1.0'
+  spec.add_dependency 'jwt', '~> 1.0'
+  spec.add_dependency 'octokit', '~> 4.18'
+  spec.add_dependency 'rails', '>= 5.0.0.1', '< 6.0.0'
 end
