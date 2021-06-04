@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'A rubygem designed to assist in the creation of GitHub bot applications.'
   spec.description = <<~DESC
-  A rubygem designed to assist in the creation of GitHub bot applications.
+    A rubygem designed to assist in the creation of GitHub bot applications.
   DESC
   spec.homepage      = 'https://github.com/poloka/github_bot-ruby'
   spec.license       = 'Apache-2.0'
@@ -28,6 +28,4 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.required_ruby_version = '>= 2.6.2'
-
-  
 end
