@@ -17,17 +17,9 @@ SimpleCov.start do
 end
 
 require 'combustion'
-if Rails.application.instance_of? Combustion::Application
-  modules_list = %i[action_controller action_view]
-  # Check if active_record should be initialized with Combustion.
-  # Criteria : Engine should have a db/migrate folder with migrations
-  modules_list << :active_record if File.exist?('db/migrate') && !Dir.empty?('db/migrate')
-
-  Combustion.initialize!(*modules_list)
-end
+Combustion.initialize! :action_controller
 
 require 'rspec/rails'
-
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
