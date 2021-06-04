@@ -6,9 +6,11 @@ gemspec
 
 # build-time dependencies
 gem 'bundler-audit'
+gem 'combustion', '~> 0.5'
 gem 'irb', require: false
 gem 'rake', '>= 12.0'
 gem 'rspec', '~> 3.4'
+gem 'rspec-rails', '~> 3.7'
 gem 'rubocop', '~> 1.0', require: false
 gem 'rubocop-performance', '~> 1.8', require: false
 gem 'rubocop-rake', '~> 0.5', require: false
