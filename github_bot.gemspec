@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.description = <<~DESC
     A rubygem designed to assist in the creation of GitHub bot applications.
   DESC
-  spec.homepage      = 'https://github.com/poloka/github_bot-ruby'
+  spec.homepage      = 'https://github.com/cerner/github_bot-ruby'
   spec.license       = 'Apache-2.0'
 
   # Specify which files should be added to the gem when it is released.
