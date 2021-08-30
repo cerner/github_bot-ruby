@@ -9,7 +9,7 @@ assignees: ''
 
 > Before reporting a bug
 - [ ] Check the bug is reproducible.
-- [ ] Search for [existing issues](https://github.com/poloka/github_bot-ruby/issues).
+- [ ] Search for [existing issues](https://github.com/cerner/github_bot-ruby/issues).
 
 **Describe the bug**
 A clear and concise description of what the bug is.
