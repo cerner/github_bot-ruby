@@ -149,10 +149,10 @@ module GithubBot
             forks_url = repository[:forks_url]
             loop do
               uri = URI.parse(forks_url)
-              new_query_ar = URI.decode_www_form(String(uri.query)) << ["page", page_count]
+              new_query_ar = URI.decode_www_form(String(uri.query)) << ['page', page_count]
               uri.query = URI.encode_www_form(new_query_ar)
 
-              Rails.logger.info "#{self.class}##{__method__} retrieving #{uri.to_s}"
+              Rails.logger.info "#{self.class}##{__method__} retrieving #{uri}"
 
               json = uri.open.read
               json_response = JSON.parse(json)
