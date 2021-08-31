@@ -135,15 +135,35 @@ module GithubBot
       # Public: Returns the repository fork URL from the original project with the most
       # recent updated forked instance first
       #
+      # Utilizing API: https://docs.github.com/en/rest/reference/repos#forks
+      # Example: https://api.github.com/repos/octocat/Hello-World/forks?page=1
+      #
       # @return [Array] The array of [String] URLs associated to the forked repositories
       def repository_fork_urls
         return @repository_fork_urls if @repository_fork_urls
 
         @repository_fork_urls =
           [].tap do |ar|
-            json = URI.parse(repository[:forks_url]).open.read
-            JSON.parse(json).sort_by { |i| Date.parse i['updated_at'] }.reverse_each do |fork|
-              ar << fork['clone_url']
+            # iterate over pages of forks
+            page_count = 1
+            forks_url = repository[:forks_url]
+            loop do
+              uri = URI.parse(forks_url)
+              new_query_ar = URI.decode_www_form(String(uri.query)) << ['page', page_count]
+              uri.query = URI.encode_www_form(new_query_ar)
+
+              Rails.logger.info "#{self.class}##{__method__} retrieving #{uri}"
+
+              json = uri.open.read
+              json_response = JSON.parse(json)
+              break if json_response.empty?
+
+              # iterate over each fork and capture the clone_url
+              json_response.each do |fork|
+                ar << fork['clone_url']
+              end
+
+              page_count += 1
             end
           end
       end
