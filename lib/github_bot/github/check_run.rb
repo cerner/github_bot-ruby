@@ -44,6 +44,11 @@ module GithubBot
         update(status: 'completed', conclusion: 'action_required', completed_at: Time.now, **options)
       end
 
+      # Public: Updates the check run to a neutral state
+      def neutral!(**options)
+        update(status: 'completed', conclusion: 'neutral', completed_at: Time.now, **options)
+      end
+
       private
 
       def update(**options)

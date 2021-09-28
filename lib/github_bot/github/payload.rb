@@ -67,6 +67,11 @@ module GithubBot
         end
       end
 
+      # Public: Returns the review information for payloads that are of type pull request review
+      def review
+        payload[:review]
+      end
+
       # Public: Returns <true> if the sender is of type 'Bot'; otherwise, <false>
       def sender_type_bot?
         payload[:sender][:type].downcase == 'bot' # rubocop:disable Performance/Casecmp
