@@ -78,7 +78,8 @@ module GithubBot
               @check.neutral!(
                 output: {
                   title: "#{name} validation is complete...",
-                  summary: "#{name} validation determined there are no required changes; however, please review the warnings as they may impact future changes.",
+                  summary: "#{name} validation determined there are no required changes; however, please review the " \
+                           'warnings as they may impact future changes.',
                   annotations: annotations
                 }
               )
