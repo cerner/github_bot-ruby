@@ -69,14 +69,31 @@ module GithubBot
         else
           # because limitation of 50 checks per API call execution, break up annotations
           # https://developer.github.com/v3/checks/runs/
-          @feedback.each_slice(50).to_a.each do |annotations|
-            @check.action_required!(
-              output: {
-                title: "#{name} validation is complete...",
-                summary: "#{name} validation determined there are changes that need attention.",
-                annotations: annotations
-              }
-            )
+
+          # need to identify if something other than warnings
+          non_warnings = @feedback.select { |h| h[:annotation_level] != 'warning' }
+
+          if non_warnings.empty?
+            @feedback.each_slice(50).to_a.each do |annotations|
+              @check.neutral!(
+                output: {
+                  title: "#{name} validation is complete...",
+                  summary: "#{name} validation determined there are no required changes; however, please review the " \
+                           'warnings as they may impact future changes.',
+                  annotations: annotations
+                }
+              )
+            end
+          else
+            @feedback.each_slice(50).to_a.each do |annotations|
+              @check.action_required!(
+                output: {
+                  title: "#{name} validation is complete...",
+                  summary: "#{name} validation determined there are changes that need attention.",
+                  annotations: annotations
+                }
+              )
+            end
           end
         end
       rescue StandardError => e

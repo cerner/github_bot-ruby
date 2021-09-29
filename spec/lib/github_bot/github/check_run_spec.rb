@@ -54,4 +54,16 @@ RSpec.describe GithubBot::Github::CheckRun do
       subject.action_required!  
     end
   end
+
+  it '#neutral!' do
+    time = Time.iso8601('2020-04-21T00:00:00Z')
+    Timecop.freeze(time) do
+      expect(subject).to receive(:update).with(
+        status: 'completed',
+        conclusion: 'neutral',
+        completed_at: time
+      )
+      subject.neutral!
+    end
+  end
 end
