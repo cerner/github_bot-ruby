@@ -2,6 +2,7 @@
 
 require 'octokit'
 require 'uri'
+require 'jwt'
 require_relative 'payload'
 
 module GithubBot
@@ -180,7 +181,7 @@ module GithubBot
           exp: current + (10 * 60),
           iss: ENV['GITHUB_APP_IDENTIFIER']
         }
-        JWT.encode(payload, private_key, 'RS256')
+        ::JWT.encode(payload, private_key, 'RS256')
       end
 
       # relay messages to Octokit::Client if responds to allow extension
