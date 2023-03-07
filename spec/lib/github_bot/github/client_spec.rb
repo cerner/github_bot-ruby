@@ -69,7 +69,7 @@ RSpec.describe GithubBot::Github::Client do
       context 'when too_large' do
         let(:exception) { Octokit::Forbidden.new(body: { errors: [code: 'too_large'] }) }
         let(:uri_object) { double }
-        let(:raw_url) { 'https://raw.github.com/foo/bar/main/file.rb'}
+        let(:raw_url) { 'https://raw.github.com/foo/bar/main/file.rb' }
         let(:parsed_url) { double }
 
         it 'uses the raw url for retrieval' do

@@ -6,7 +6,7 @@ require 'timecop'
 RSpec.describe GithubBot::Github::CheckRun do
   let(:client) { double }
 
-  subject do 
+  subject do
     described_class.new(
       name: 'foo',
       repo: 'bar',
@@ -27,7 +27,7 @@ RSpec.describe GithubBot::Github::CheckRun do
     time = Time.iso8601('2020-04-21T00:00:00Z')
     Timecop.freeze(time) do
       expect(subject).to receive(:update).with(status: 'in_progress', started_at: time)
-      subject.in_progress!  
+      subject.in_progress!
     end
   end
 
@@ -39,7 +39,7 @@ RSpec.describe GithubBot::Github::CheckRun do
         conclusion: 'success',
         completed_at: time
       )
-      subject.complete!  
+      subject.complete!
     end
   end
 
@@ -51,7 +51,7 @@ RSpec.describe GithubBot::Github::CheckRun do
         conclusion: 'action_required',
         completed_at: time
       )
-      subject.action_required!  
+      subject.action_required!
     end
   end
 
