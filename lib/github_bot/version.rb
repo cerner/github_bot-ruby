@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module GithubBot
-  VERSION = '0.2.2'
+  VERSION = '0.2.3'
 
   # version module
   module Version

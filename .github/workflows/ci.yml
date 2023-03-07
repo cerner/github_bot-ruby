@@ -4,11 +4,12 @@ name: CI
 
 on:
   push:
-    branches: ['**']
+    branches: ['main']
   pull_request:
     branches: ['main']
   schedule:
     - cron: '0 1 * * SUN'
+  workflow_dispatch:
 
 jobs:
   tests:
@@ -32,6 +33,13 @@ jobs:
         ruby-version: ${{ matrix.ruby }}
     - name: Install dependencies
       run: bundle install --jobs 4 --retry 3
+    - if: github.event_name == 'pull_request'
+      name: Danger
+      uses: danger/danger-js@9.1.8
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # https://github.com/danger/danger-js/issues/557#issuecomment-664851950
+        DANGER_DISABLE_TRANSPILATION: true
     - name: Run tests
       run: bundle exec rspec
     - name: Run Rubocop

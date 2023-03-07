@@ -1,19 +1,13 @@
 require:
   - rubocop-performance
-  - rubocop-rspec
-  - rubocop-rake
 
 AllCops:
-  TargetRubyVersion: 2.6
   DisabledByDefault: true
   Exclude:
-    - 'bin/{bundle,bundle-audit,bundler-audit,rake,rspec,rubocop}'
+    - 'bin/{bundle,bundle-audit,bundler-audit,rackup,rake,rspec,rubocop}'
     - 'target/**/*'
     - 'vendor/**/*'
-    - 'build/**/*'
-    - 'pkg/**/*'
-    - 'tmp/**/*'
-    - 'spec/**/*'
+  SuggestExtensions: false
 
 # Bundler Cop Configuration
 # https://docs.rubocop.org/en/stable/cops_bundler/
@@ -241,7 +235,7 @@ Lint/AssignmentInCondition:
   Enabled: true
 Lint/BigDecimalNew:
   Enabled: true
-# Supercedes Lint/UselessComparison in rubocop 0.89.
+# Supersedes Lint/UselessComparison in rubocop 0.89.
 Lint/BinaryOperatorWithIdenticalOperands:
   Enabled: true
 Lint/BooleanSymbol:
@@ -302,7 +296,7 @@ Lint/MissingCopEnableDirective:
   Enabled: true
 Lint/MissingSuper:
   # Disabled. This cop is well-meaning, but doesn't provide exemption of cases where invocation of
-  # super is not possible. Supercedes Style/MethodMissingSuper in rubocop 0.89.
+  # super is not possible. Supersedes Style/MethodMissingSuper in rubocop 0.89.
     Enabled: false
 Lint/MultipleComparison:
   Enabled: true
@@ -388,8 +382,6 @@ Lint/UselessAccessModifier:
   Enabled: true
 Lint/UselessAssignment:
   Enabled: true
-Lint/UselessElseWithoutRescue:
-  Enabled: true
 Lint/UselessSetterCall:
   Enabled: true
 Lint/Void:
@@ -452,7 +444,7 @@ Naming/MemoizedInstanceVariableName:
   Enabled: true
 Naming/MethodName:
   Enabled: true
-  IgnoredPatterns:
+  AllowedPatterns:
     - 'do_GET'
     - 'do_POST'
     - 'do_PUT'
@@ -468,9 +460,10 @@ Naming/RescuedExceptionsVariableName:
   Enabled: false
 Naming/VariableName:
   Enabled: true
+# Disabled. It's acceptable (and in heavy usage already) to name things like "data_model_1"
+# instead of forcing "data_model1".
 Naming/VariableNumber:
-  Enabled: true
-
+  Enabled: false
 
 # Performance Cop Configuration
 # https://rubocop-performance.readthedocs.io/en/stable/cops_performance/
@@ -605,15 +598,11 @@ Style/DefWithParentheses:
 Style/Dir:
   Enabled: true
 Style/Documentation:
-  Enabled: true
-  Exclude:
-    - test/**/*
-    - spec/**/*
+# Disabled. Documentation is required, but enforcement here does not seem to work.
+  Enabled: false
 Style/DocumentationMethod:
-  Enabled: true
-  Exclude:
-    - test/**/*
-    - spec/**/*
+# Disabled. Documentation is required, but enforcement here does not seem to work.
+  Enabled: false
 Style/DoubleCopDisableDirective:
   Enabled: true
 Style/DoubleNegation:
@@ -704,7 +693,7 @@ Style/MethodCallWithoutArgsParentheses:
   Enabled: true
 Style/MethodCalledOnDoEndBlock:
 # Disabled. It is acceptable to call a method at the end of a do/end block. In particular, this is
-# occationally needed in RSpec code.
+# occasionally needed in RSpec code.
   Enabled: false
 Style/MethodDefParentheses:
   Enabled: true
@@ -804,7 +793,8 @@ Style/RedundantCondition:
 Style/RedundantConditional:
   Enabled: true
 Style/RedundantException:
-  Enabled: true
+# Disabled.  With ImplicitRuntimeError enabled, disable subsequent warning if consumer wishes to continue using RuntimeError
+  Enabled: false
 Style/RedundantFreeze:
   Enabled: true
 Style/RedundantInterpolation:
@@ -856,8 +846,8 @@ Style/SpecialGlobalVars:
 Style/StabbyLambdaParentheses:
   Enabled: true
 Style/StderrPuts:
-# Disabled. This cop functionally equates use of STDERR with optional warnings. This may be true in some use cases, but there
-#           are times when using STDERR in CLIs is not an optional warning.
+# Disabled. This cop functionally equates use of STDERR with optional warnings. This may be true
+# in some use cases, but there are times when using STDERR in CLIs is not an optional warning.
   Enabled: false
 Style/StringHashKeys:
 # Disabled. There are many use cases where using Strings for Hash keys is required.

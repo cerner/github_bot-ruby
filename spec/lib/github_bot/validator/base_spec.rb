@@ -5,20 +5,20 @@ require 'spec_helper'
 RSpec.describe GithubBot::Validator::Base do
   let(:client_api) { double }
   let(:check_run) { double }
-  let(:warning_feedback) {
+  let(:warning_feedback) do
     {
       path: '/foo/bar.rb',
       annotation_level: 'warning',
       message: 'this is my warning annotation'
     }
-  }
-  let(:failure_feedback) {
+  end
+  let(:failure_feedback) do
     {
       path: '/bing/baz.rb',
       annotation_level: 'failure',
       message: 'this is my failure annotation'
     }
-  }
+  end
 
   subject { described_class.new }
 

@@ -1,6 +1,8 @@
 # GitHub Bot
 
-![CI](https://github.com/cerner/github_bot-ruby/actions/workflows/ci.yml/badge.svg)
+[![Cerner OSS](https://badgen.net/badge/Cerner/OSS/blue)](http://engineering.cerner.com/2014/01/cerner-and-open-source/)
+[![License](https://badgen.net/github/license/cerner/github_bot-ruby)](https://github.com/cerner/github_bot-ruby/blob/main/LICENSE)
+[![Build Status](https://github.com/cerner/github_bot-ruby/actions/workflows/ci.yml/badge.svg)](https://github.com/cerner/github_bot-ruby/actions/workflows/ci.yml)
 
 This library is a ruby implementation necessary for beginning your GitHub bot development for Ruby-based projects. The key items this project provides to consumers are the following:
 
