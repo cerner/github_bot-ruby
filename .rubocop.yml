@@ -2,6 +2,7 @@ require:
   - rubocop-performance
 
 AllCops:
+  TargetRubyVersion: 3.2
   DisabledByDefault: true
   Exclude:
     - 'bin/{bundle,bundle-audit,bundler-audit,rackup,rake,rspec,rubocop}'
@@ -648,7 +649,7 @@ Style/GlobalVars:
 Style/GuardClause:
   Enabled: true
 Style/HashSyntax:
-  Enabled: true
+  Enabled: false
 Style/IdenticalConditionalBranches:
   Enabled: true
 Style/IfInsideElse:

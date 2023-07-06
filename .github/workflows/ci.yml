@@ -18,9 +18,9 @@ jobs:
       fail-fast: false
       matrix:
         ruby:
-        - 2.6
         - 2.7
         - 3.0
+        - 3.2
     name: Ruby-${{matrix.ruby}}
     continue-on-error: ${{matrix.ruby == 'head'}}
     steps:

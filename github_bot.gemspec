@@ -27,10 +27,13 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(/^bin\//) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '>= 2.6.2'
+  # rubocop:disable Gemspec/RequiredRubyVersion
+  # The intent is for supportability from ruby 2.7 and greater
+  spec.required_ruby_version = '>= 2.7.6'
+  # rubocop:enable Gemspec/RequiredRubyVersion
 
   spec.add_dependency 'git', '~> 1.0'
-  spec.add_dependency 'jwt', '~> 1.0'
-  spec.add_dependency 'octokit', '~> 4.18'
+  spec.add_dependency 'jwt', '~> 2.0'
+  spec.add_dependency 'octokit', '>= 4.18'
   spec.add_dependency 'rails', '>= 5.0.0.1', '< 7.0.0'
 end
