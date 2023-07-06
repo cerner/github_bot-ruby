@@ -29,7 +29,7 @@ Gem::Specification.new do |spec|
 
   # rubocop:disable Gemspec/RequiredRubyVersion
   # The intent is for supportability from ruby 2.7 and greater
-  spec.required_ruby_version = '>= 2.7.6'
+  spec.required_ruby_version = '>= 2.7.2'
   # rubocop:enable Gemspec/RequiredRubyVersion
 
   spec.add_dependency 'git', '~> 1.0'
